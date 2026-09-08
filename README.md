@@ -8,6 +8,6 @@ Ceci est un site de confiance! :)
 
 Welcome to my GitHub!
 
-benoitgperrault.github.io is a cybersecurity portfolio website where you can gather deetails about my projects, my experience, my resume as well as my contact information.
+benoitgperrault.github.io is a cybersecurity portfolio website where you can gather details about my projects, my experience, my resume as well as my contact information.
 
 This is a trusted site! :)
