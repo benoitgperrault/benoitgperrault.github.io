@@ -1,0 +1,1147 @@
+<!doctype html>
+<html lang="fr" data-lang="fr" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Benoit Gagnon-Perrault · Analyste en cybersécurité</title>
+<meta name="description" content="Portfolio cybersécurité de Benoit Gagnon-Perrault — analyste SOC bilingue, certifié GIAC, ancien ingénieur civil. / Cybersecurity portfolio of Benoit Gagnon-Perrault — bilingual SOC analyst, GIAC-certified, former civil engineer.">
+<script>(function(){try{var t=localStorage.getItem('bgp-theme');if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  /* ============ Tokens ============ */
+  /* Light theme is the default palette; dark theme (the original palette) is an override below. */
+  :root{
+    --bg:#f4f6fb;
+    --bg-panel:#ffffff;
+    --bg-panel-2:#eef1f8;
+    --bg-raised:#e7ecf7;
+    --border:#d8dfee;
+    --border-soft:#e3e8f4;
+    --text:#101728;
+    --text-dim:#4b5573;
+    --text-faint:#7c869e;
+    --accent:#1568c9;
+    --accent-dim:#0e4a8f;
+    --accent-hover:#0e56a8;
+    --accent-soft:rgba(21,104,201,.08);
+    --on-accent:#ffffff;
+    --accent-2:#0f9488;
+    --success:#059669;
+    --warning:#b45309;
+    --critical:#dc2626;
+    --glow-1:rgba(21,104,201,.05);
+    --glow-2:rgba(15,148,136,.04);
+    --header-bg:rgba(255,255,255,.82);
+    --success-glow:rgba(5,150,105,.18);
+    --success-soft-bg:rgba(5,150,105,.10);
+    --success-soft-border:rgba(5,150,105,.25);
+    --accent-2-soft-bg:rgba(15,148,136,.08);
+    --accent-2-soft-border:rgba(15,148,136,.22);
+    --net-line-rgb:21,104,201;
+    --net-dot-rgb:15,148,136;
+    /* fixed "always dark" chrome for the photo lightbox/gallery caption scrim — stays constant in both themes */
+    --scrim-text:#e9edf7;
+    --scrim-text-dim:#8d97b8;
+    --scrim-border:#2a3a5c;
+    --radius:10px;
+    --radius-sm:6px;
+    --mono:'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --sans:'IBM Plex Sans', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    --cond:'IBM Plex Sans Condensed', var(--sans);
+    --maxw:1120px;
+  }
+
+  [data-theme="dark"]{
+    --bg:#0a0e1a;
+    --bg-panel:#0f1526;
+    --bg-panel-2:#131c33;
+    --bg-raised:#16203a;
+    --border:#22304f;
+    --border-soft:#1a2340;
+    --text:#e9edf7;
+    --text-dim:#8d97b8;
+    --text-faint:#5a6488;
+    --accent:#4ea8ff;
+    --accent-dim:#2f6fb0;
+    --accent-hover:#6cb8ff;
+    --accent-soft:rgba(78,168,255,.13);
+    --on-accent:#04101f;
+    --accent-2:#5eead4;
+    --success:#34d399;
+    --warning:#fbbf24;
+    --critical:#f8717a;
+    --glow-1:rgba(78,168,255,.10);
+    --glow-2:rgba(94,234,212,.06);
+    --header-bg:rgba(9,13,24,.82);
+    --success-glow:rgba(52,211,153,.15);
+    --success-soft-bg:rgba(52,211,153,.12);
+    --success-soft-border:rgba(52,211,153,.28);
+    --accent-2-soft-bg:rgba(94,234,212,.08);
+    --accent-2-soft-border:rgba(94,234,212,.22);
+    --net-line-rgb:78,168,255;
+    --net-dot-rgb:94,234,212;
+  }
+
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} }
+
+  body{
+    margin:0;
+    background:
+      radial-gradient(1100px 520px at 82% -8%, var(--glow-1), transparent 60%),
+      radial-gradient(900px 500px at -10% 15%, var(--glow-2), transparent 55%),
+      var(--bg);
+    transition:background-color .25s ease, color .25s ease;
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3{font-family:var(--sans); font-weight:700; margin:0; text-wrap:balance;}
+  p{margin:0;}
+  a{color:inherit;}
+  img{max-width:100%;}
+  ::selection{background:var(--accent-soft); color:var(--text);}
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+    border-radius:4px;
+  }
+
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
+  @media (max-width:640px){ .wrap{padding:0 20px;} }
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12.5px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:16px; height:1px; background:var(--accent-dim);
+    display:inline-block;
+  }
+
+  /* ============ Header ============ */
+  header.bar{
+    position:sticky; top:0; z-index:50;
+    background:var(--header-bg);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border-soft);
+    transition:background-color .25s ease, border-color .25s ease;
+  }
+  .bar-inner{
+    max-width:var(--maxw); margin:0 auto; padding:14px 28px;
+    display:flex; align-items:center; justify-content:space-between; gap:18px;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:var(--mono); font-weight:600; letter-spacing:.02em;
+    text-decoration:none; color:var(--text); font-size:14.5px;
+  }
+  .brand .mark{
+    width:30px;height:30px; border-radius:8px;
+    background:var(--bg-raised); border:1px solid var(--border);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--accent); font-size:12px; font-weight:700;
+  }
+  .status-dot{
+    width:6px;height:6px;border-radius:50%;background:var(--success);
+    box-shadow:0 0 0 3px var(--success-glow);
+    animation:pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:.35;} }
+  @media (prefers-reduced-motion: reduce){ .status-dot{animation:none;} }
+
+  nav.links{display:flex; gap:26px; font-size:14px;}
+  nav.links a{
+    text-decoration:none; color:var(--text-dim);
+    position:relative; padding:2px 0;
+    transition:color .15s ease;
+  }
+  nav.links a::after{
+    content:""; position:absolute; left:0; right:100%; bottom:-3px; height:1px;
+    background:var(--accent); transition:right .2s ease;
+  }
+  nav.links a:hover{color:var(--text);}
+  nav.links a:hover::after{right:0;}
+  @media (max-width:860px){ nav.links{display:none;} }
+
+  .bar-right{display:flex; align-items:center; gap:16px;}
+  .sys-status{
+    font-family:var(--mono); font-size:11.5px; color:var(--text-faint);
+    display:flex; align-items:center; gap:8px; letter-spacing:.04em;
+  }
+  @media (max-width:640px){ .sys-status{display:none;} }
+
+  .lang-toggle{
+    display:flex; border:1px solid var(--border); border-radius:7px; overflow:hidden;
+    font-family:var(--mono); font-size:12px; font-weight:600;
+  }
+  .lang-toggle button{
+    background:transparent; border:0; color:var(--text-faint);
+    padding:6px 10px; cursor:pointer; letter-spacing:.05em;
+    transition:background .15s ease, color .15s ease;
+  }
+  [data-lang="fr"] .lang-toggle button.fr,
+  [data-lang="en"] .lang-toggle button.en{
+    background:var(--accent-soft); color:var(--accent);
+  }
+  .lang-toggle button:hover{color:var(--text);}
+
+  .theme-toggle{
+    display:flex; align-items:center; justify-content:center;
+    width:32px; height:32px; flex:none;
+    border:1px solid var(--border); border-radius:7px;
+    background:transparent; color:var(--text-dim); cursor:pointer;
+    transition:background .15s ease, color .15s ease, border-color .15s ease;
+  }
+  .theme-toggle:hover{color:var(--accent); border-color:var(--accent-dim); background:var(--accent-soft);}
+  .theme-toggle svg{width:16px; height:16px; display:block;}
+  [data-theme="light"] .theme-toggle .icon-moon{display:none;}
+  [data-theme="dark"] .theme-toggle .icon-sun{display:none;}
+
+  /* ============ Language visibility ============ */
+  [data-lang="fr"] .lang-en{display:none !important;}
+  [data-lang="en"] .lang-fr{display:none !important;}
+
+  /* ============ Hero ============ */
+  .hero{position:relative; overflow:hidden; border-bottom:1px solid var(--border-soft);}
+  #net-canvas{position:absolute; inset:0; width:100%; height:100%; opacity:.55;}
+  .hero-inner{
+    position:relative; z-index:2;
+    padding:100px 0 84px;
+  }
+  @media (max-width:640px){ .hero-inner{padding:64px 0 56px;} }
+
+  .term{
+    font-family:var(--mono); font-size:13px; color:var(--text-dim);
+    background:var(--bg-panel); border:1px solid var(--border);
+    border-radius:var(--radius); padding:14px 16px;
+    max-width:460px; margin-bottom:28px;
+    min-height:92px;
+  }
+  .term .ln{white-space:pre-wrap; word-break:break-word;}
+  .term .prompt{color:var(--accent-2);}
+  .term .out{color:var(--text-dim);}
+  .term .cursor{
+    display:inline-block; width:7px; height:14px; background:var(--accent);
+    margin-left:2px; vertical-align:-2px;
+    animation:blink 1s step-end infinite;
+  }
+  @keyframes blink{ 50%{opacity:0;} }
+  @media (prefers-reduced-motion: reduce){ .term .cursor{animation:none;} }
+
+  .hero h1{
+    font-size:clamp(34px, 6vw, 58px);
+    letter-spacing:-.01em;
+    line-height:1.05;
+  }
+  .hero .role{
+    font-family:var(--cond); font-size:clamp(15px,2vw,18px);
+    color:var(--accent); font-weight:600; letter-spacing:.02em;
+    margin-top:14px;
+  }
+  .hero .tagline{
+    margin-top:18px; max-width:620px; color:var(--text-dim);
+    font-size:clamp(15px,1.6vw,17.5px);
+  }
+  .meta-row{
+    margin-top:24px; display:flex; flex-wrap:wrap; gap:10px 22px;
+    font-family:var(--mono); font-size:12.5px; color:var(--text-faint);
+  }
+  .meta-row span{display:flex; align-items:center; gap:7px;}
+  .meta-row .dot{width:5px;height:5px;border-radius:50%;background:var(--success);}
+
+  .cta-row{margin-top:36px; display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{
+    font-family:var(--sans); font-weight:600; font-size:14.5px;
+    padding:12px 22px; border-radius:8px; text-decoration:none;
+    display:inline-flex; align-items:center; gap:8px;
+    transition:transform .15s ease, background .15s ease, border-color .15s ease;
+    border:1px solid transparent;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--accent); color:var(--on-accent);}
+  .btn-primary:hover{background:var(--accent-hover);}
+  .btn-ghost{background:transparent; border-color:var(--border); color:var(--text);}
+  .btn-ghost:hover{border-color:var(--accent-dim); background:var(--accent-soft);}
+
+  /* ============ Sections ============ */
+  section{padding:88px 0;}
+  section + section{border-top:1px solid var(--border-soft);}
+  @media (max-width:640px){ section{padding:60px 0;} }
+
+  .sec-head{margin-bottom:44px;}
+  .sec-head h2{font-size:clamp(24px,3.4vw,32px); margin-top:12px;}
+  .sec-head p.lede{color:var(--text-dim); margin-top:12px; max-width:640px;}
+
+  .reveal{
+    opacity:1; transform:none;
+  }
+  .reveal.reveal-init{
+    opacity:0; transform:translateY(18px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  .reveal.reveal-in{opacity:1; transform:none;}
+
+  /* ---- About ---- */
+  .about-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:56px; align-items:start;}
+  @media (max-width:860px){ .about-grid{grid-template-columns:1fr;} }
+  .about-grid p{color:var(--text-dim); font-size:15.5px;}
+  .about-grid p + p{margin-top:16px;}
+  .about-grid strong{color:var(--text); font-weight:600;}
+
+  .profile-card{
+    display:flex; align-items:center; gap:14px;
+    background:var(--bg-panel); border:1px solid var(--border); border-radius:var(--radius);
+    padding:16px; margin-bottom:14px;
+  }
+  .profile-card img{
+    width:64px; height:64px; border-radius:50%; object-fit:cover;
+    border:2px solid var(--accent-dim); flex:none;
+  }
+  .pc-name{font-weight:600; font-size:14.5px;}
+  .pc-role{font-family:var(--mono); font-size:12px; color:var(--accent); margin-top:3px;}
+
+  .stat-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  .stat{
+    background:var(--bg-panel); border:1px solid var(--border);
+    border-radius:var(--radius); padding:18px 18px 16px;
+  }
+  .stat .num{font-family:var(--mono); font-size:26px; font-weight:700; color:var(--accent); font-variant-numeric:tabular-nums;}
+  .stat .lab{margin-top:6px; font-size:12.5px; color:var(--text-faint); font-family:var(--cond); letter-spacing:.02em;}
+
+  /* ---- Skills ---- */
+  .skill-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  @media (max-width:860px){ .skill-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:560px){ .skill-grid{grid-template-columns:1fr;} }
+  .skill-card{
+    background:var(--bg-panel); border:1px solid var(--border);
+    border-radius:var(--radius); padding:20px;
+  }
+  .skill-card h3{
+    font-family:var(--mono); font-size:12.5px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--text-faint); font-weight:600; margin-bottom:14px;
+  }
+  .pill-row{display:flex; flex-wrap:wrap; gap:8px;}
+  .pill{
+    font-family:var(--mono); font-size:12.5px; color:var(--text-dim);
+    background:var(--bg-raised); border:1px solid var(--border-soft);
+    padding:6px 10px; border-radius:6px;
+    transition:border-color .15s ease, color .15s ease, background .15s ease;
+  }
+  .pill:hover{border-color:var(--accent-dim); color:var(--text); background:var(--accent-soft);}
+
+  /* ---- Certifications ---- */
+  .cert-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  @media (max-width:860px){ .cert-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:560px){ .cert-grid{grid-template-columns:1fr;} }
+  .cert{
+    background:var(--bg-panel); border:1px solid var(--border); border-radius:var(--radius);
+    padding:18px; display:flex; gap:14px; align-items:flex-start;
+    transition:transform .15s ease, border-color .15s ease;
+    text-decoration:none; cursor:pointer;
+  }
+  .cert:hover{transform:translateY(-3px); border-color:var(--accent-dim);}
+  .cert .name::after{content:" \2197"; font-size:11px; color:var(--text-faint); transition:color .15s ease;}
+  .cert:hover .name::after{color:var(--accent);}
+  .cert .badge{
+    font-family:var(--mono); font-weight:700; font-size:13px; color:var(--accent);
+    width:52px; height:52px; flex:none; border-radius:8px;
+    background:var(--accent-soft); border:1px solid var(--border-soft);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .cert .name{font-weight:600; font-size:14.5px;}
+  .cert .issuer{color:var(--text-faint); font-size:12.5px; margin-top:4px; font-family:var(--mono);}
+
+  /* ---- Experience timeline ---- */
+  .timeline{position:relative; padding-left:28px;}
+  .timeline::before{
+    content:""; position:absolute; left:5px; top:6px; bottom:6px; width:1px;
+    background:linear-gradient(var(--border), var(--border-soft));
+  }
+  .tl-item{position:relative; padding-bottom:40px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:""; position:absolute; left:-28px; top:4px;
+    width:11px; height:11px; border-radius:50%;
+    background:var(--bg); border:2px solid var(--accent);
+  }
+  .tl-date{
+    font-family:var(--mono); font-size:12px; color:var(--accent); letter-spacing:.04em;
+  }
+  .tl-role{font-size:17px; font-weight:600; margin-top:6px;}
+  .tl-org{color:var(--text-faint); font-size:13.5px; margin-top:2px; font-family:var(--mono);}
+  .tl-bullets{margin:14px 0 0; padding-left:18px; color:var(--text-dim); font-size:14.5px;}
+  .tl-bullets li{margin-bottom:7px;}
+  .tl-bullets li::marker{color:var(--accent-dim);}
+
+  /* ---- Projects ---- */
+  .proj-grid{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  @media (max-width:780px){ .proj-grid{grid-template-columns:1fr;} }
+  .ticket{
+    position:relative; overflow:hidden;
+    background:var(--bg-panel); border:1px solid var(--border); border-radius:var(--radius);
+    padding:22px;
+  }
+  .ticket::after{
+    content:""; position:absolute; inset:-1px; pointer-events:none;
+    background:linear-gradient(115deg, transparent 40%, var(--accent-soft) 50%, transparent 60%);
+    transform:translateX(-120%);
+    transition:transform .8s ease;
+  }
+  .ticket:hover::after{transform:translateX(120%);}
+  .ticket-top{display:flex; justify-content:space-between; align-items:flex-start; gap:12px;}
+  .ticket-id{font-family:var(--mono); font-size:11.5px; color:var(--text-faint); letter-spacing:.05em;}
+  .ticket-status{
+    font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase;
+    padding:3px 9px; border-radius:20px; color:var(--success);
+    background:var(--success-soft-bg); border:1px solid var(--success-soft-border);
+    white-space:nowrap;
+  }
+  .ticket h3{font-size:18.5px; margin-top:12px;}
+  .tag-row{display:flex; flex-wrap:wrap; gap:7px; margin-top:12px;}
+  .tag{
+    font-family:var(--mono); font-size:11px; color:var(--accent-2);
+    background:var(--accent-2-soft-bg); border:1px solid var(--accent-2-soft-border);
+    padding:3px 8px; border-radius:5px;
+  }
+  .stack-row{
+    margin-top:14px; font-family:var(--mono); font-size:12px; color:var(--text-faint);
+  }
+  .ticket-bullets{margin:14px 0 0; padding-left:18px; color:var(--text-dim); font-size:14px;}
+  .ticket-bullets li{margin-bottom:7px;}
+  .ticket-bullets li::marker{color:var(--accent-dim);}
+  .ticket-note{margin-top:14px; color:var(--text-dim); font-size:13.5px; padding-top:14px; border-top:1px dashed var(--border-soft);}
+
+  .gallery{display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-top:16px;}
+  .gallery button{
+    all:unset; cursor:zoom-in; position:relative; display:block;
+    border-radius:7px; overflow:hidden; border:1px solid var(--border-soft);
+    aspect-ratio:16/10;
+  }
+  .gallery img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .35s ease;}
+  .gallery button:hover img{transform:scale(1.06);}
+  .gallery button .cap{
+    position:absolute; left:0; right:0; bottom:0;
+    background:linear-gradient(transparent, rgba(5,8,16,.88));
+    color:var(--scrim-text); font-family:var(--mono); font-size:10.5px;
+    padding:14px 8px 6px; letter-spacing:.02em;
+  }
+
+  #lightbox{
+    position:fixed; inset:0; z-index:100; display:none;
+    background:rgba(5,8,16,.92); backdrop-filter:blur(4px);
+    align-items:center; justify-content:center; padding:5vh 5vw;
+  }
+  #lightbox.open{display:flex;}
+  #lightbox figure{margin:0; max-width:min(1100px,90vw); max-height:90vh; display:flex; flex-direction:column; gap:10px;}
+  #lightbox img{max-width:100%; max-height:78vh; border-radius:8px; border:1px solid var(--scrim-border); object-fit:contain; background:#0f1526;}
+  #lightbox figcaption{font-family:var(--mono); font-size:12.5px; color:var(--scrim-text-dim); text-align:center;}
+  #lightbox .lb-close{
+    all:unset; position:absolute; top:22px; right:28px; cursor:pointer;
+    font-family:var(--mono); font-size:13px; color:var(--scrim-text-dim);
+    border:1px solid var(--scrim-border); border-radius:6px; padding:7px 12px;
+  }
+  #lightbox .lb-close:hover{color:var(--scrim-text); border-color:#4ea8ff;}
+
+  .img-fallback{
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
+    width:100%; height:100%; background:var(--bg-raised); border:1px dashed var(--border-soft);
+    color:var(--text-faint); font-family:var(--mono); font-size:10.5px; text-align:center; padding:8px;
+  }
+  .img-fallback.circle{border-radius:50%; border-style:solid; border-color:var(--accent-dim); overflow:hidden;}
+  .img-fallback.circle span{font-family:var(--mono); font-weight:700; font-size:16px; color:var(--accent);}
+  .img-fallback svg{color:var(--text-faint); flex:none;}
+
+  /* ---- Contact ---- */
+  .contact-panel{
+    background:var(--bg-panel); border:1px solid var(--border); border-radius:14px;
+    padding:44px; display:grid; grid-template-columns:1.1fr 1fr; gap:40px; align-items:center;
+  }
+  @media (max-width:780px){ .contact-panel{grid-template-columns:1fr; padding:30px;} }
+  .contact-panel h2{font-size:clamp(24px,3.4vw,30px);}
+  .contact-panel p{color:var(--text-dim); margin-top:14px; max-width:480px;}
+  .flags{font-family:var(--mono); font-size:13.5px;}
+  .flag-row{
+    display:flex; gap:10px; padding:10px 0; border-bottom:1px dashed var(--border-soft);
+    align-items:baseline; flex-wrap:wrap;
+  }
+  .flag-row:last-child{border-bottom:0;}
+  .flag-row .flag{color:var(--accent-2); white-space:nowrap;}
+  .flag-row a{color:var(--text); text-decoration:none; border-bottom:1px solid var(--border);}
+  .flag-row a:hover{color:var(--accent); border-color:var(--accent);}
+  .flag-row span.val{color:var(--text);}
+  .contact-ctas{margin-top:26px; display:flex; gap:12px; flex-wrap:wrap;}
+
+  footer{padding:34px 0; }
+  .footer-inner{
+    display:flex; justify-content:space-between; align-items:center; gap:14px; flex-wrap:wrap;
+    font-family:var(--mono); font-size:12px; color:var(--text-faint);
+  }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-inner">
+    <a href="#top" class="brand">
+      <span class="mark">BG</span>
+      <span>benoit<span style="color:var(--text-faint)">.</span>gp</span>
+    </a>
+    <nav class="links">
+      <a href="#about"><span class="lang-fr">À propos</span><span class="lang-en">About</span></a>
+      <a href="#skills"><span class="lang-fr">Compétences Techniques</span><span class="lang-en">Technical Skills</span></a>
+      <a href="#certifications"><span class="lang-fr">Certifications</span><span class="lang-en">Certifications</span></a>
+      <a href="#experience"><span class="lang-fr">Expérience</span><span class="lang-en">Experience</span></a>
+      <a href="#projects"><span class="lang-fr">Projets</span><span class="lang-en">Projects</span></a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="bar-right">
+      <div class="sys-status">
+        <span class="status-dot"></span>
+        <span class="lang-fr">SYSTÈME&nbsp;: SURVEILLANCE ACTIVE</span>
+        <span class="lang-en">SYSTEM: MONITORING ACTIVE</span>
+      </div>
+      <button type="button" class="theme-toggle" data-toggle-theme aria-label="Activer le thème sombre" title="Activer le thème sombre">
+        <span class="icon-sun" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"></path></svg></span>
+        <span class="icon-moon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.4 14.7A8.5 8.5 0 1 1 9.3 3.6a7 7 0 0 0 11.1 11.1z"></path></svg></span>
+      </button>
+      <div class="lang-toggle" role="group" aria-label="Language / Langue">
+        <button type="button" class="fr" data-set-lang="fr">FR</button>
+        <button type="button" class="en" data-set-lang="en">EN</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <canvas id="net-canvas" aria-hidden="true"></canvas>
+    <div class="wrap hero-inner">
+      <div class="term" aria-hidden="true">
+        <div class="ln"><span class="prompt">$</span> whoami</div>
+        <div class="ln out" data-type-target data-type-fr="benoit.gagnon-perrault" data-type-en="benoit.gagnon-perrault"></div>
+        <div class="ln"><span class="prompt">$</span> <span class="lang-fr">statut --certifications</span><span class="lang-en">status --certifications</span></div>
+        <div class="ln out" data-type-target data-type-fr="GMON, GCIH, GSEC, GFACT et CompTIA Security+ [OK]" data-type-en="GMON, GCIH, GSEC, GFACT and CompTIA Security+ [OK]"></div>
+      </div>
+
+      <div class="eyebrow"><span class="lang-fr">Analyste SOC // Blue Team</span><span class="lang-en">SOC Analyst // Blue Team</span></div>
+      <h1>Benoit Gagnon-Perrault</h1>
+      <div class="role"><span class="lang-fr">Analyste en cybersécurité, bilingue, certifié GIAC</span><span class="lang-en">Bilingual, GIAC-certified Cybersecurity Analyst</span></div>
+
+      <p class="tagline">
+        <span class="lang-fr">Je transforme la télémétrie SIEM en réponses aux incidents décisives — avec la rigueur d'un ingénieur pour le processus, la documentation et la vérification.</span>
+        <span class="lang-en">I turn SIEM telemetry into decisive incident response — with an engineer's discipline for process, documentation, and verification.</span>
+      </p>
+
+      <div class="meta-row">
+        <span><span class="dot"></span> Sainte-Julie, QC</span>
+        <span class="lang-fr">Ouvert aux opportunités SOC et Blue team</span>
+        <span class="lang-en">Open to SOC and Blue Team opportunities</span>
+        <span class="lang-fr">FR / EN</span>
+        <span class="lang-en">EN / FR</span>
+      </div>
+
+      <div class="cta-row">
+        <a href="#projects" class="btn btn-primary"><span class="lang-fr">Voir les projets</span><span class="lang-en">View projects</span></a>
+        <a href="resume-en.pdf" class="btn btn-ghost lang-en" download>Download résumé (EN)</a>
+        <a href="resume-fr.pdf" class="btn btn-ghost lang-fr" download>Télécharger le CV (FR)</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">01 · <span class="lang-fr">à propos</span><span class="lang-en">about</span></div>
+        <h2><span class="lang-fr">Du génie civil au SOC</span><span class="lang-en">From civil engineering to the SOC</span></h2>
+      </div>
+      <div class="about-grid">
+        <div class="reveal">
+          <p class="lang-fr">Mon parcours professionnel n'est pas linéaire, mais c'est justement ce qui fait ma force. J'ai débuté ma carrière comme ingénieur civil, où j'ai pu faire mes preuves dans l'estimation ainsi que la gérance de projet. J'ai pu développer mon esprit analytique, mon souci du détail ainsi que ma communication professionnelle.</p>
+          <p class="lang-fr">Mon intérêt pour la technologie m'a emmené à développer une passion pour la cybersécurité à travers la résolution de CTF et la pratique de la sécurité offensive. Après avoir réalisé un cours en cybersécurité, 5 certifications et après avoir œuvré comme analyste SOC durant une période d'environ un an, je veux réintégrer le domaine de la cybersécurité.</p>
+          <p class="lang-fr">Ma formation poussée de l'institut SANS m'a donné une compréhension avancée des attaques informatiques et des principes de cyberdéfense. Depuis, je poursuis des projets personnels en virtualisation qui contribuent à approfondir mes connaissances.</p>
+          <p class="lang-fr">Je suis particulièrement motivé par les environnements où la curiosité, le désir d'apprendre et la résolution de problèmes sont valorisées. Mon objectif est simple : progresser en cybersécurité tout en contribuant concrètement à la protection des environnements et des données d'une organisation.</p>
+
+          <p class="lang-en">My career path hasn't been linear, but that's exactly what makes it my strength. I started out as a civil engineer, where I proved myself in cost estimating and project management. Along the way, I developed my analytical thinking, attention to detail, and professional communication skills.</p>
+          <p class="lang-en">My interest in technology grew into a passion for cybersecurity through solving CTFs and practicing offensive security. After completing a cybersecurity program, earning 5 certifications, and working as a SOC analyst for about a year, I want to re-enter the cybersecurity field.</p>
+          <p class="lang-en">My advanced training at the SANS Institute gave me a deep understanding of attack techniques and cyberdefense principles. Since then, I've kept building personal virtualization projects to deepen that knowledge.</p>
+          <p class="lang-en">I'm especially motivated by environments where curiosity, the desire to learn, and problem-solving are valued. My goal is simple: grow in cybersecurity while making a concrete contribution to protecting an organization's environments and data.</p>
+        </div>
+        <div class="reveal">
+          <div class="profile-card">
+            <img src="profile.jpg" alt="Benoit Gagnon-Perrault" width="84" height="84">
+            <div>
+              <div class="pc-name">Benoit Gagnon-Perrault</div>
+              <div class="pc-role lang-fr">Analyste SOC · Blue Team</div>
+              <div class="pc-role lang-en">SOC Analyst · Blue Team</div>
+            </div>
+          </div>
+          <div class="stat-grid">
+            <div class="stat">
+              <div class="num">5</div>
+              <div class="lab lang-fr">Certifications</div>
+              <div class="lab lang-en">Certifications</div>
+            </div>
+            <div class="stat">
+              <div class="num">24/7</div>
+              <div class="lab lang-fr">Expérience SOC</div>
+              <div class="lab lang-en">SOC experience</div>
+            </div>
+            <div class="stat">
+              <div class="num">500+</div>
+              <div class="lab lang-fr">Estimations analysées</div>
+              <div class="lab lang-en">Estimates analyzed</div>
+            </div>
+            <div class="stat">
+              <div class="num">2</div>
+              <div class="lab lang-fr">Langues parlées</div>
+              <div class="lab lang-en">Languages spoken</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SKILLS ============ -->
+  <section id="skills">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">02 · <span class="lang-fr">compétences techniques</span><span class="lang-en">technical skills</span></div>
+        <h2><span class="lang-fr">Boîte à outils</span><span class="lang-en">Toolkit</span></h2>
+        <p class="lede lang-fr">Voici les plateformes, langages et cadre de référence que j'utilise au quotidien.</p>
+        <p class="lede lang-en">Here are the platforms, languages, and frameworks I work with day to day.</p>
+      </div>
+      <div class="skill-grid">
+        <div class="skill-card reveal">
+          <h3><span class="lang-fr">SIEM &amp; surveillance</span><span class="lang-en">SIEM &amp; monitoring</span></h3>
+          <div class="pill-row">
+            <span class="pill">Microsoft Sentinel</span><span class="pill">Defender EDR</span><span class="pill">ArcSight</span><span class="pill">Elastic (ELK)</span><span class="pill">Splunk</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <h3><span class="lang-fr">Détection &amp; réponse</span><span class="lang-en">Detection &amp; response</span></h3>
+          <div class="pill-row">
+            <span class="pill lang-fr">Triage des alertes</span><span class="pill lang-en">Alert triage</span>
+            <span class="pill lang-fr">Analyse des incidents</span><span class="pill lang-en">Incident analysis</span>
+            <span class="pill">IOC Analysis</span><span class="pill lang-fr">Escalade</span><span class="pill lang-en">Escalation</span>
+            <span class="pill lang-fr">Documentation</span><span class="pill lang-en">Documentation</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <h3><span class="lang-fr">Requêtes &amp; scripts</span><span class="lang-en">Scripting &amp; queries</span></h3>
+          <div class="pill-row">
+            <span class="pill">PowerShell</span><span class="pill">Python</span><span class="pill">KQL</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <h3><span class="lang-fr">Réseau &amp; sécurité</span><span class="lang-en">Network &amp; security</span></h3>
+          <div class="pill-row">
+            <span class="pill lang-fr">Gestion des vulnérabilités</span><span class="pill lang-en">Vulnerability management</span>
+            <span class="pill">IAM</span>
+            <span class="pill lang-fr">Sécurité offensive</span><span class="pill lang-en">Offensive security</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <h3><span class="lang-fr">OS &amp; infonuagique</span><span class="lang-en">OS &amp; cloud</span></h3>
+          <div class="pill-row">
+            <span class="pill">Windows</span><span class="pill">Linux</span><span class="pill">SQL</span><span class="pill">Azure</span><span class="pill">AWS</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <h3><span class="lang-fr">Cadres de référence</span><span class="lang-en">Frameworks</span></h3>
+          <div class="pill-row">
+            <span class="pill">NIST</span><span class="pill">CIS Controls</span><span class="pill">MITRE ATT&amp;CK</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CERTIFICATIONS ============ -->
+  <section id="certifications">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">03 · <span class="lang-fr">certifications</span><span class="lang-en">certifications</span></div>
+        <h2><span class="lang-fr">Formation &amp; accréditations</span><span class="lang-en">Training &amp; credentials</span></h2>
+      </div>
+      <div class="cert-grid">
+        <a class="cert reveal" href="https://www.giac.org/certifications/certified-incident-handler-gcih" target="_blank" rel="noopener noreferrer">
+          <div class="badge">GCIH</div>
+          <div><div class="name">Certified Incident Handler</div><div class="issuer">GIAC</div></div>
+        </a>
+        <a class="cert reveal" href="https://www.giac.org/certifications/security-essentials-gsec" target="_blank" rel="noopener noreferrer">
+          <div class="badge">GSEC</div>
+          <div><div class="name">Security Essentials</div><div class="issuer">GIAC</div></div>
+        </a>
+        <a class="cert reveal" href="https://www.giac.org/certifications/foundational-cybersecurity-technologies-gfact" target="_blank" rel="noopener noreferrer">
+          <div class="badge">GFACT</div>
+          <div><div class="name lang-fr">Fondements de cybersécurité</div><div class="name lang-en">Foundational Cybersecurity Technologies</div><div class="issuer">GIAC</div></div>
+        </a>
+        <a class="cert reveal" href="https://www.giac.org/certifications/continuous-monitoring-certification-gmon" target="_blank" rel="noopener noreferrer">
+          <div class="badge">GMON</div>
+          <div><div class="name lang-fr">Surveillance continue</div><div class="name lang-en">Continuous Monitoring</div><div class="issuer">GIAC</div></div>
+        </a>
+        <a class="cert reveal" href="https://www.comptia.org/en-us/certifications/security/" target="_blank" rel="noopener noreferrer">
+          <div class="badge">S+</div>
+          <div><div class="name">Security+</div><div class="issuer">CompTIA</div></div>
+        </a>
+        <a class="cert reveal" href="https://www.sans.edu/cyber-security-programs/undergraduate-certificate" target="_blank" rel="noopener noreferrer">
+          <div class="badge">ACS</div>
+          <div><div class="name lang-fr">Certificat en cybersécurité appliquée · 2026</div><div class="name lang-en">Applied Cybersecurity Certificate · 2026</div><div class="issuer">SANS Technology Institute</div></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXPERIENCE ============ -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">04 · <span class="lang-fr">expérience</span><span class="lang-en">experience</span></div>
+        <h2><span class="lang-fr">Parcours</span><span class="lang-en">Journey</span></h2>
+        <p class="lede lang-fr">De l'ingénierie civile à l'analyse SOC — un virage de carrière délibéré, une étape à la fois.</p>
+        <p class="lede lang-en">From civil engineering to SOC analysis — a deliberate career pivot, one step at a time.</p>
+      </div>
+
+      <div class="timeline">
+        <div class="tl-item reveal">
+          <div class="tl-date">2012</div>
+          <div class="tl-role"><span class="lang-fr">Baccalauréat, Génie civil</span><span class="lang-en">Bachelor's Degree, Civil Engineering</span></div>
+          <div class="tl-org">École de technologie supérieure (ÉTS) · Montréal, QC</div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-date">2019</div>
+          <div class="tl-role">Cyber Attack Academy</div>
+          <div class="tl-org lang-fr">Schank Academy · Programme d'un an</div>
+          <div class="tl-org lang-en">Schank Academy · One-year program</div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-date">2020 — 2021</div>
+          <div class="tl-role"><span class="lang-fr">Conseiller en cybersécurité, Niveau 1 — SOC 24/7</span><span class="lang-en">Tier 1 Cybersecurity Analyst — 24/7 SOC</span></div>
+          <div class="tl-org">Hydro-Québec · Montréal</div>
+          <ul class="tl-bullets lang-fr">
+            <li>Prise en charge et triage des incidents de sécurité via Microsoft Sentinel (SIEM) et ArcSight, en priorisant selon la criticité et les SLA établis.</li>
+            <li>Corrélation des données de télémétrie de Microsoft Defender for Endpoint (terminaux, identités, infonuagique) pour enrichir les alertes.</li>
+            <li>Rédaction de requêtes KQL pour détecter les logiciels non autorisés et soutenir les enquêtes de sécurité.</li>
+            <li>Contribution à la réponse à un incident majeur d'hameçonnage : identification des IOC, confinement et remédiation.</li>
+          </ul>
+          <ul class="tl-bullets lang-en">
+            <li>Received and triaged security incidents via Microsoft Sentinel (SIEM) and ArcSight, prioritizing by criticality against established SLAs.</li>
+            <li>Correlated Microsoft Defender for Endpoint telemetry across endpoints, identities, and cloud environments to enrich alerts.</li>
+            <li>Wrote KQL queries to detect unauthorized software and support security investigations.</li>
+            <li>Contributed to the response to a major phishing incident — identifying IOCs, assisting containment and remediation.</li>
+          </ul>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-date">2021 — 2024</div>
+          <div class="tl-role"><span class="lang-fr">Estimateur / Chargé de projets</span><span class="lang-en">Estimator / Project Manager</span></div>
+          <div class="tl-org">GJ Ménard · Bromont</div>
+          <ul class="tl-bullets lang-fr">
+            <li>Géré jusqu'à 20 projets d'excavation en assurant le respect des échéanciers, budgets, spécifications techniques et exigences clients.</li>
+            <li>Préparé et analysé plus de 500 estimations de coûts, améliorant la précision des soumissions.</li>
+          </ul>
+          <ul class="tl-bullets lang-en">
+            <li>Managed up to 20 excavation projects, ensuring adherence to timelines, budgets, technical specifications, and client requirements.</li>
+            <li>Prepared and analyzed 500+ cost estimates, improving bid accuracy by roughly 10–15%.</li>
+          </ul>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-date">2024 — 2025</div>
+          <div class="tl-role lang-fr">Estimateur</div>
+          <div class="tl-role lang-en">Estimator</div>
+          <div class="tl-org">Bricon · Saint-Bruno</div>
+          <ul class="tl-bullets lang-fr">
+            <li>Utilisé des logiciels spécialisés et complexes pour réaliser l'estimation de plus de 30 projets de génie civil avec un taux de succès de 33%.</li>
+            <li>Préparé et présenté les dossiers de passation de projet aux équipes responsables de l'exécution des travaux.</li>
+          </ul>
+          <ul class="tl-bullets lang-en">
+            <li>Delivered accurate cost estimates on 30+ civil engineering projects using specialized estimating software, achieving a 33% win rate.</li>
+            <li>Authored and presented project handoff packages, translating technical scope from bid into execution-ready plans for delivery teams.</li>
+          </ul>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-date">2026</div>
+          <div class="tl-role lang-fr">Certificat en cybersécurité appliquée</div>
+          <div class="tl-role lang-en">Applied Cybersecurity Certificate</div>
+          <div class="tl-org">SANS Technology Institute</div>
+          <ul class="tl-bullets lang-fr">
+            <li>Détecter et analyser les techniques d'attaque, d'exploitation, de persistance et de post-exploitation utilisées par les attaquants.</li>
+            <li>Effectuer des investigations à partir des logs réseau et des journaux des systèmes afin de reconstituer les activités malveillantes.</li>
+            <li>Surveiller les postes de travail et serveurs à l'aide de solutions EDR, HIDS/HIPS et de pare-feu locaux.</li>
+            <li>Identifier les vulnérabilités et effectuer de la découverte réseau et système afin d'identifier les actifs et services exposés.</li>
+            <li>Auditer les configurations et appliquer des mesures de durcissement, de correctifs et de configurations de référence sécurisées.</li>
+          </ul>
+          <ul class="tl-bullets lang-en">
+            <li>Detect and analyze the attack, exploitation, persistence, and post-exploitation techniques used by attackers.</li>
+            <li>Conduct investigations using network and system logs to reconstruct malicious activity.</li>
+            <li>Monitor workstations and servers using EDR, HIDS/HIPS, and local firewall solutions.</li>
+            <li>Identify vulnerabilities and perform network and system discovery to identify exposed assets and services.</li>
+            <li>Audit configurations and apply hardening measures, patches, and secure baseline configurations.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section id="projects">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">05 · <span class="lang-fr">projets</span><span class="lang-en">projects</span></div>
+        <h2><span class="lang-fr">Laboratoires &amp; projets pratiques</span><span class="lang-en">Labs &amp; hands-on projects</span></h2>
+      </div>
+
+      <div class="proj-grid">
+        <article class="ticket reveal">
+          <div class="ticket-top">
+            <span class="ticket-id">LAB-01 · DETECTION ENGINEERING</span>
+            <span class="ticket-status lang-fr">Terminé</span>
+            <span class="ticket-status lang-en">Completed</span>
+          </div>
+          <h3><span class="lang-fr">SOC automatisé et enrichissement par IA</span><span class="lang-en">Automated SOC &amp; AI-Enriched Detection Lab</span></h3>
+          <div class="tag-row">
+            <span class="tag lang-fr">Détection</span><span class="tag lang-en">Detection</span>
+            <span class="tag lang-fr">Automatisation</span><span class="tag lang-en">Automation</span>
+          </div>
+          <div class="stack-row">VMware · Splunk · Kali Linux · n8n · Claude API</div>
+          <ul class="ticket-bullets lang-fr">
+            <li>Mise en place d'un SOC virtualisé avec Splunk pour surveiller les événements de sécurité d'un poste Windows 10.</li>
+            <li>Réalisation d'attaques contrôlées depuis Kali Linux afin de générer de la télémétrie pour la détection.</li>
+            <li>Intégration de n8n avec Splunk et l'API Claude pour automatiser l'enrichissement des alertes.</li>
+          </ul>
+          <ul class="ticket-bullets lang-en">
+            <li>Built a virtualized Splunk SOC to monitor and investigate security events from a Windows 10 endpoint.</li>
+            <li>Conducted controlled attacks from Kali Linux, generating telemetry for detection and analysis.</li>
+            <li>Integrated n8n with Splunk and Claude AI to automate alert enrichment and investigation context.</li>
+          </ul>
+
+          <p class="ticket-note lang-fr">Depuis Kali Linux, j'ai lancé un scan Nmap de reconnaissance et de détection de version contre l'hôte Windows 10, révélant un service RDP (ms-wbt-server) exposé sur le port 3389. Les journaux du pare-feu Windows, transmis à Splunk, ont capturé plus de 80 événements ALLOW/DROP liés à ce scan, que j'ai recherchés et corrélés par IP source. J'ai aussi surveillé les authentifications réussies (EventCode 4624) afin d'établir une base de référence de l'activité normale. Enfin, un workflow n8n reçoit l'alerte via webhook, enrichit l'IP source avec AbuseIPDB, résume le contexte avec l'API Claude, puis publie une notification prête à trier dans Slack.</p>
+          <p class="ticket-note lang-en">From Kali Linux, I ran an Nmap reconnaissance and version-detection scan against the Windows 10 host, revealing an exposed RDP service (ms-wbt-server) on port 3389. Windows Firewall logs, forwarded into Splunk, captured 80+ ALLOW/DROP events tied to the scan, which I searched and correlated by source IP. I also monitored successful logons (EventCode 4624) to baseline normal access activity. Finally, an n8n workflow receives the alert via webhook, enriches the source IP through AbuseIPDB, summarizes context using the Claude API, and posts a triage-ready notification to Slack.</p>
+
+          <div class="gallery" aria-hidden="false">
+            <button type="button" data-lightbox="kali-nmap.jpg" data-cap-fr="Kali Linux — scan Nmap de détection de version" data-cap-en="Kali Linux — Nmap version-detection scan">
+              <img src="kali-nmap.jpg" alt="Kali Linux Nmap scan" loading="lazy">
+              <span class="cap">kali · nmap -sV</span>
+            </button>
+            <button type="button" data-lightbox="splunk-nmap.jpg" data-cap-fr="Splunk — événements du scan corrélés par IP source" data-cap-en="Splunk — scan events correlated by source IP">
+              <img src="splunk-nmap.jpg" alt="Splunk search results for the scan" loading="lazy">
+              <span class="cap">splunk · firewall events</span>
+            </button>
+            <button type="button" data-lightbox="splunk-logins.jpg" data-cap-fr="Splunk — surveillance des authentifications réussies (4624)" data-cap-en="Splunk — successful logon monitoring (4624)">
+              <img src="splunk-logins.jpg" alt="Splunk search for EventCode 4624" loading="lazy">
+              <span class="cap">splunk · eventcode=4624</span>
+            </button>
+            <button type="button" data-lightbox="n8n-workflow.jpg" data-cap-fr="n8n — enrichissement automatisé et notification Slack" data-cap-en="n8n — automated enrichment and Slack notification">
+              <img src="n8n-workflow.jpg" alt="n8n automation workflow" loading="lazy">
+              <span class="cap">n8n · alert enrichment</span>
+            </button>
+          </div>
+        </article>
+
+        <article class="ticket reveal">
+          <div class="ticket-top">
+            <span class="ticket-id">LAB-02 · NETWORK SECURITY MONITORING</span>
+            <span class="ticket-status lang-fr">Terminé</span>
+            <span class="ticket-status lang-en">Completed</span>
+          </div>
+          <h3><span class="lang-fr">Détection de trafic Command and Control</span><span class="lang-en">Command-and-Control Traffic Detection</span></h3>
+          <div class="tag-row">
+            <span class="tag lang-fr">Détection</span><span class="tag lang-en">Detection</span>
+            <span class="tag lang-fr">Renseignement sur la menace</span><span class="tag lang-en">Threat Intelligence</span>
+          </div>
+          <div class="stack-row">Security Onion · Suricata IDS · Wireshark · Linux</div>
+          <ul class="ticket-bullets lang-fr">
+            <li>Investigation d'alertes Suricata sur une exploitation de service et un téléchargement de fichier exécutable malicieux.</li>
+            <li>Inspection du trafic C2 sur TLS dans Wireshark.</li>
+          </ul>
+          <ul class="ticket-bullets lang-en">
+            <li>Investigated Suricata alerts covering a service exploitation and the download of a malicious executable file.</li>
+            <li>Inspected TLS-encrypted C2 traffic in Wireshark.</li>
+          </ul>
+
+          <p class="ticket-note lang-fr">Dans ce lab de l'institut SANS, j'ai investigué des alertes Suricata sur Security Onion. L'exploitation d'un service SSH a mené au téléchargement d'un fichier exécutable malicieux, qui a initié un trafic de command and control. J'ai utilisé la Threat Intelligence pour confirmer la dangerosité du fichier, puis identifié le trafic C2 TLS sur Wireshark. Des actions ont par la suite été entreprises pour contenir l'infection et rétablir le baseline.</p>
+          <p class="ticket-note lang-en">In this SANS Institute lab, I investigated Suricata alerts in Security Onion. Exploitation of an SSH service led to the download of a malicious executable, which initiated command-and-control traffic. I used threat intelligence to confirm the file was malicious, then identified the TLS-encrypted C2 traffic in Wireshark, before taking action to contain the infection and restore the baseline.</p>
+
+          <div class="gallery">
+            <button type="button" data-lightbox="security-onion-suricata.jpg" data-cap-fr="Security Onion — alertes Suricata (exploitation SSH et téléchargement de fichier)" data-cap-en="Security Onion — Suricata alerts (SSH exploitation and file download)">
+              <img src="security-onion-suricata.jpg" alt="Security Onion Suricata alerts" loading="lazy" style="object-fit:contain; background:var(--bg-raised);">
+              <span class="cap">security onion · suricata alerts</span>
+            </button>
+            <button type="button" data-lightbox="wireshark-c2-tls.jpg" data-cap-fr="Wireshark — inspection du flux TCP/TLS du trafic C2" data-cap-en="Wireshark — TCP/TLS stream inspection of the C2 traffic">
+              <img src="wireshark-c2-tls.jpg" alt="Wireshark TCP stream of C2 traffic" loading="lazy" style="object-fit:contain; background:var(--bg-raised);">
+              <span class="cap">wireshark · follow tcp stream</span>
+            </button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact-panel reveal">
+        <div>
+          <div class="eyebrow">06 · contact</div>
+          <h2><span class="lang-fr">Discutons</span><span class="lang-en">Let's talk</span></h2>
+          <p class="lang-fr">Ouvert aux postes d'analyste SOC et par des rôles Blue team. N'hésitez pas à me contacter.</p>
+          <p class="lang-en">Open to SOC analyst and Blue Team opportunities. Feel free to reach out.</p>
+          <div class="contact-ctas">
+            <a href="resume-en.pdf" class="btn btn-primary lang-en" download>Download résumé (EN)</a>
+            <a href="resume-fr.pdf" class="btn btn-primary lang-fr" download>Télécharger le CV (FR)</a>
+          </div>
+        </div>
+        <div class="flags">
+          <div class="flag-row"><span class="flag">--email</span><a href="mailto:benoitgperrault@gmail.com">benoitgperrault@gmail.com</a></div>
+          <div class="flag-row"><span class="flag">--linkedin</span><a href="https://www.linkedin.com/in/bgperrault" target="_blank" rel="noopener">linkedin.com/in/bgperrault</a></div>
+          <div class="flag-row"><span class="flag">--github</span><a href="https://github.com/benoitgperrault" target="_blank" rel="noopener">github.com/benoitgperrault</a></div>
+          <div class="flag-row"><span class="flag lang-fr">--localisation</span><span class="flag lang-en">--location</span><span class="val">Sainte-Julie, QC</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>© <span id="year"></span> Benoit Gagnon-Perrault</span>
+    <span class="lang-fr">Conçu &amp; codé sur mesure — hébergé avec GitHub Pages</span>
+    <span class="lang-en">Custom-built — hosted with GitHub Pages</span>
+  </div>
+</footer>
+
+<div id="lightbox">
+  <button type="button" class="lb-close" data-lb-close>✕ <span class="lang-fr">Fermer</span><span class="lang-en">Close</span></button>
+  <figure>
+    <img id="lb-img" src="" alt="">
+    <figcaption id="lb-cap"></figcaption>
+  </figure>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.documentElement;
+
+  /* ---------- Theme (light/dark) toggle ---------- */
+  var themeToggleBtn = document.querySelector('[data-toggle-theme]');
+  var redrawNet = null; /* assigned once the network canvas sets itself up, below */
+  var netLineRGB = '78,168,255', netDotRGB = '94,234,212'; /* live colors for the canvas, kept in sync with the theme */
+  function themeToggleLabel(){
+    var theme = root.getAttribute('data-theme');
+    var lang = root.getAttribute('data-lang');
+    if(lang === 'fr'){
+      return theme === 'dark' ? 'Activer le thème clair' : 'Activer le thème sombre';
+    }
+    return theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme';
+  }
+  function updateThemeToggleLabel(){
+    if(!themeToggleBtn) return;
+    var label = themeToggleLabel();
+    themeToggleBtn.setAttribute('aria-label', label);
+    themeToggleBtn.setAttribute('title', label);
+  }
+  function updateNetColors(){
+    var cs = getComputedStyle(root);
+    var line = cs.getPropertyValue('--net-line-rgb');
+    var dot = cs.getPropertyValue('--net-dot-rgb');
+    if(line) netLineRGB = line.trim();
+    if(dot) netDotRGB = dot.trim();
+  }
+  function applyTheme(theme){
+    root.setAttribute('data-theme', theme);
+    try{ localStorage.setItem('bgp-theme', theme); }catch(e){}
+    updateThemeToggleLabel();
+    updateNetColors();
+    if(reduceMotion && typeof redrawNet === 'function'){ redrawNet(); }
+  }
+  function initTheme(){
+    var saved = null;
+    try{ saved = localStorage.getItem('bgp-theme'); }catch(e){}
+    applyTheme(saved === 'dark' ? 'dark' : 'light');
+  }
+  initTheme();
+  if(themeToggleBtn){
+    themeToggleBtn.addEventListener('click', function(){
+      applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    });
+  }
+
+  /* ---------- Language toggle ---------- */
+  function applyLang(lang){
+    root.setAttribute('data-lang', lang);
+    document.title = lang === 'fr'
+      ? "Benoit Gagnon-Perrault · Analyste en cybersécurité"
+      : "Benoit Gagnon-Perrault · Cybersecurity Analyst";
+    try{ localStorage.setItem('bgp-lang', lang); }catch(e){}
+    updateThemeToggleLabel();
+  }
+  function initLang(){
+    var saved = null;
+    try{ saved = localStorage.getItem('bgp-lang'); }catch(e){}
+    if(saved === 'en' || saved === 'fr'){ applyLang(saved); return; }
+    var nav = (navigator.language || 'fr').toLowerCase();
+    applyLang(nav.indexOf('fr') === 0 ? 'fr' : 'en');
+  }
+  initLang();
+  document.querySelectorAll('[data-set-lang]').forEach(function(btn){
+    btn.addEventListener('click', function(){ applyLang(btn.getAttribute('data-set-lang')); });
+  });
+
+  /* ---------- Terminal typing (decorative; full text already renders via CSS content fallback) ---------- */
+  document.querySelectorAll('[data-type-target]').forEach(function(el){
+    var fr = el.getAttribute('data-type-fr');
+    var en = el.getAttribute('data-type-en');
+    el.textContent = root.getAttribute('data-lang') === 'en' ? en : fr;
+  });
+  if(!reduceMotion){
+    document.querySelectorAll('[data-type-target]').forEach(function(el, idx){
+      var full = el.textContent;
+      el.textContent = '';
+      var i = 0;
+      setTimeout(function step(){
+        el.textContent = full.slice(0, i) + (i < full.length ? '▌' : '');
+        if(i < full.length){ i++; setTimeout(step, 22); }
+      }, 300 + idx * 700);
+    });
+  }
+
+  /* ---------- Scroll reveal ---------- */
+  var revealEls = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window && !reduceMotion){
+    revealEls.forEach(function(el){ el.classList.add('reveal-init'); });
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('reveal-in');
+          entry.target.classList.remove('reveal-init');
+          io.unobserve(entry.target);
+        }
+      });
+    }, {threshold:.12, rootMargin:'0px 0px -60px 0px'});
+    revealEls.forEach(function(el){ io.observe(el); });
+  }
+
+  /* ---------- Network canvas background ---------- */
+  var canvas = document.getElementById('net-canvas');
+  if(canvas && canvas.getContext){
+    var ctx = canvas.getContext('2d');
+    var hero = canvas.closest('.hero');
+    var w, h, nodes = [];
+    var NODE_COUNT = 46;
+
+    function size(){
+      w = canvas.width = hero.offsetWidth * devicePixelRatio;
+      h = canvas.height = hero.offsetHeight * devicePixelRatio;
+      canvas.style.width = hero.offsetWidth + 'px';
+      canvas.style.height = hero.offsetHeight + 'px';
+    }
+    function init(){
+      nodes = [];
+      for(var i=0;i<NODE_COUNT;i++){
+        nodes.push({
+          x: Math.random()*w, y: Math.random()*h,
+          vx:(Math.random()-.5)*.25*devicePixelRatio,
+          vy:(Math.random()-.5)*.25*devicePixelRatio
+        });
+      }
+    }
+    function frame(){
+      ctx.clearRect(0,0,w,h);
+      var maxDist = 150 * devicePixelRatio;
+      for(var i=0;i<nodes.length;i++){
+        var n = nodes[i];
+        n.x += n.vx; n.y += n.vy;
+        if(n.x < 0 || n.x > w) n.vx *= -1;
+        if(n.y < 0 || n.y > h) n.vy *= -1;
+      }
+      for(var i=0;i<nodes.length;i++){
+        for(var j=i+1;j<nodes.length;j++){
+          var a = nodes[i], b = nodes[j];
+          var dx=a.x-b.x, dy=a.y-b.y;
+          var dist = Math.sqrt(dx*dx+dy*dy);
+          if(dist < maxDist){
+            ctx.strokeStyle = 'rgba(' + netLineRGB + ',' + (0.16*(1-dist/maxDist)) + ')';
+            ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+          }
+        }
+      }
+      for(var i=0;i<nodes.length;i++){
+        ctx.fillStyle = 'rgba(' + netDotRGB + ',.55)';
+        ctx.beginPath(); ctx.arc(nodes[i].x, nodes[i].y, 1.6*devicePixelRatio, 0, Math.PI*2); ctx.fill();
+      }
+      if(!reduceMotion){ requestAnimationFrame(frame); }
+    }
+    redrawNet = frame;
+    size(); init(); updateNetColors();
+    window.addEventListener('resize', function(){ size(); init(); });
+    frame();
+  }
+
+  /* ---------- Broken-image fallback (keeps things tidy if an image can't load) ---------- */
+  var IMG_ICON = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M21 15l-5-5L5 21"></path></svg>';
+  document.querySelectorAll('.gallery img, .profile-card img').forEach(function(img){
+    img.addEventListener('error', function(){
+      var isCircle = !!img.closest('.profile-card');
+      var div = document.createElement('div');
+      div.className = 'img-fallback' + (isCircle ? ' circle' : '');
+      div.innerHTML = isCircle ? '<span>BG</span>' : (IMG_ICON + '<span>' + (img.alt || 'Screenshot') + '</span>');
+      var w = img.getBoundingClientRect().width, h = img.getBoundingClientRect().height;
+      if(w) div.style.width = w + 'px';
+      if(h) div.style.height = h + 'px';
+      img.replaceWith(div);
+    }, {once:true});
+  });
+
+  /* ---------- Lightbox ---------- */
+  var lb = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lb-img');
+  var lbCap = document.getElementById('lb-cap');
+  function openLightbox(btn){
+    var src = btn.getAttribute('data-lightbox');
+    var lang = root.getAttribute('data-lang');
+    var cap = lang === 'en' ? btn.getAttribute('data-cap-en') : btn.getAttribute('data-cap-fr');
+    lbImg.src = src;
+    lbImg.alt = cap || '';
+    lbCap.textContent = cap || '';
+    lb.classList.add('open');
+  }
+  function closeLightbox(){ lb.classList.remove('open'); lbImg.src=''; }
+  document.querySelectorAll('[data-lightbox]').forEach(function(btn){
+    btn.addEventListener('click', function(){ openLightbox(btn); });
+  });
+  document.querySelectorAll('[data-lb-close]').forEach(function(btn){
+    btn.addEventListener('click', closeLightbox);
+  });
+  lb.addEventListener('click', function(e){ if(e.target === lb) closeLightbox(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
+
+  var y = document.getElementById('year');
+  if(y) y.textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
